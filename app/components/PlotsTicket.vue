@@ -17,7 +17,7 @@ const config = usePlotsConfig()
       </div>
 
       <div class="mt-28 flex flex-col items-center px-10">
-        <div class="w-full max-w-xs rounded-[2rem] bg-white p-8">
+        <div class="flex w-full max-w-xs justify-center rounded-[2rem] bg-white p-8">
           <TicketQr value="https://partypooper.app/t/plots-demo" :size="240" />
         </div>
         <p class="mt-6 w-full max-w-xs truncate text-center text-lg font-bold">
