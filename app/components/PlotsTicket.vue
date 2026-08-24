@@ -16,7 +16,7 @@ const config = usePlotsConfig()
         <div class="py-1 text-blue-400">Aug</div>
         <div class="bg-blue-600 py-1 font-semibold">23</div>
       </div>
-      <img v-if="config.imageDataUrl" :src="config.imageDataUrl" alt="" class="h-14 w-14 rounded-md object-cover" />
+      <img v-if="config.imageDataUrl" :src="config.imageDataUrl" :alt="config.eventTitle" class="h-14 w-14 rounded-md object-cover" />
       <div v-else class="h-14 w-14 rounded-md bg-neutral-800" />
       <p class="flex-1 text-sm text-neutral-400">{{ config.eventTitle }}</p>
     </div>
