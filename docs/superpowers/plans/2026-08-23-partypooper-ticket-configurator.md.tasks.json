@@ -4,14 +4,14 @@
     {
       "id": 0,
       "subject": "Task 1: Tailwind, PWA module, and app shell",
-      "status": "pending",
+      "status": "completed",
       "description": "**Goal:** Get Tailwind CSS v4 compiling, the PWA module producing a manifest + service worker, and the app shell rendering pages instead of the Nuxt welcome screen.\n\n**Files:**\n- Modify: `nuxt.config.ts`\n- Create: `app/assets/css/main.css`\n- Create: `public/icon.svg`\n- Modify: `app/app.vue`\n\n**Acceptance Criteria:**\n- [ ] `npm run build` succeeds with no Tailwind/PWA config errors.\n- [ ] `.output/public/manifest.webmanifest` (or equivalent PWA output) is generated and references `icon.svg`.\n- [ ] `app/app.vue` renders `<NuxtPage />` so route pages display.\n\n**Verify:** `npm run build` → ends with `✨ Build complete!`\n\n**Steps:** Install `@vite-pwa/nuxt`, `qrcode.vue`, `@tailwindcss/vite`, `tailwindcss`; add `app/assets/css/main.css` Tailwind entry; add `public/icon.svg` placeholder icon; rewrite `nuxt.config.ts` with `ssr: false`, Tailwind vite plugin, and `@vite-pwa/nuxt` module + manifest config; rewrite `app/app.vue` to render `<NuxtPage />`; verify build; commit.\n\n```json:metadata\n{\"files\": [\"nuxt.config.ts\", \"app/assets/css/main.css\", \"public/icon.svg\", \"app/app.vue\"], \"verifyCommand\": \"npm run build\", \"acceptanceCriteria\": [\"npm run build succeeds\", \"manifest generated referencing icon.svg\", \"app.vue renders NuxtPage\"], \"modelTier\": \"mechanical\"}\n```",
       "activeForm": "Configuring Tailwind, PWA module, and app shell"
     },
     {
       "id": 1,
       "subject": "Task 2: Ticket config composable",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [0],
       "description": "**Goal:** Independent, `localStorage`-backed reactive config for Posh and Plots, seeded with each screenshot's example content.\n\n**Files:**\n- Create: `app/composables/useTicketConfig.ts`\n\n**Acceptance Criteria:**\n- [ ] `usePoshConfig()` and `usePlotsConfig()` each return a distinct reactive object seeded with the screenshot values.\n- [ ] Edits to one does not affect the other.\n- [ ] Values persist across a page reload via `localStorage`.\n\n**Verify:** `npm run build` → ends with `✨ Build complete!`\n\n**Steps:** Write `app/composables/useTicketConfig.ts` exporting `TicketConfig`, `usePoshConfig()`, `usePlotsConfig()` backed by `useState` + `localStorage` sync via `watch`; verify build; commit.\n\n```json:metadata\n{\"files\": [\"app/composables/useTicketConfig.ts\"], \"verifyCommand\": \"npm run build\", \"acceptanceCriteria\": [\"usePoshConfig and usePlotsConfig are independent\", \"values persist via localStorage\"], \"modelTier\": \"mechanical\"}\n```",
       "activeForm": "Building the ticket config composable"
@@ -19,7 +19,7 @@
     {
       "id": 2,
       "subject": "Task 3: TicketQr component",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [0],
       "description": "**Goal:** A reusable QR code renderer with an optional centered logo overlay (used by Posh's \"(P)\" badge, not by Plots).\n\n**Files:**\n- Create: `app/components/TicketQr.vue`\n\n**Acceptance Criteria:**\n- [ ] Renders a scannable QR code for a given `value` prop with no network request (client-side generation).\n- [ ] An optional `#logo` slot renders centered on top of the QR code when provided; nothing overlays it when omitted.\n\n**Verify:** `npm run build` → ends with `✨ Build complete!`\n\n**Steps:** Write `app/components/TicketQr.vue` wrapping `qrcode.vue`'s `QrcodeVue` component with `value`/`size` props and an absolutely-positioned `#logo` slot; verify build; commit.\n\n```json:metadata\n{\"files\": [\"app/components/TicketQr.vue\"], \"verifyCommand\": \"npm run build\", \"acceptanceCriteria\": [\"QR renders client-side\", \"optional logo slot overlays centered\"], \"modelTier\": \"mechanical\"}\n```",
       "activeForm": "Building the TicketQr component"
@@ -27,7 +27,7 @@
     {
       "id": 3,
       "subject": "Task 4: TicketConfigForm component",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [1],
       "description": "**Goal:** One shared form (image upload, price, event title, ticket title) bound to whichever config object the page passes in.\n\n**Files:**\n- Create: `app/components/TicketConfigForm.vue`\n\n**Acceptance Criteria:**\n- [ ] Selecting an image file updates `imageDataUrl` to a base64 data URL.\n- [ ] Editing price/event title/ticket title updates the bound config object live (no submit button).\n\n**Verify:** `npm run build` → ends with `✨ Build complete!`\n\n**Steps:** Write `app/components/TicketConfigForm.vue` using `defineModel<TicketConfig>()`, a file input converting to a data URL via `FileReader`, and text/number inputs bound with `v-model`; verify build; commit.\n\n```json:metadata\n{\"files\": [\"app/components/TicketConfigForm.vue\"], \"verifyCommand\": \"npm run build\", \"acceptanceCriteria\": [\"image upload sets imageDataUrl\", \"all four fields are live-bound\"], \"modelTier\": \"mechanical\"}\n```",
       "activeForm": "Building the TicketConfigForm component"
@@ -35,7 +35,7 @@
     {
       "id": 4,
       "subject": "Task 5: Posh screen (Image 2)",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [2, 3],
       "description": "**Goal:** The Order # / Breakdown / Apple Wallet screen, matching Image 2, wired to `usePoshConfig()`.\n\n**Files:**\n- Create: `app/components/PoshTicket.vue`\n- Create: `app/pages/posh.vue`\n\n**Acceptance Criteria:**\n- [ ] Event title renders uppercase in the white card; ticket title and price appear in the Breakdown row; price also appears as the Total.\n- [ ] QR code has the centered \"(P)\" badge.\n- [ ] No image is rendered anywhere on this screen.\n- [ ] `/posh` shows the config form above the live preview, and edits update the preview immediately.\n\n**Verify:** `npm run build` → ends with `✨ Build complete!`; then `npm run dev` and visually compare `http://localhost:3000/posh` against Image 2 at an iPhone-width viewport.\n\n**Steps:** Write `app/components/PoshTicket.vue` (order header, white card with event title/date/QR+badge/order number, dark Breakdown section, action rows) reading from `usePoshConfig()`; write `app/pages/posh.vue` combining `TicketConfigForm` (v-model on the Posh config) with `PoshTicket`; verify build; manual visual check against Image 2; commit.\n\n```json:metadata\n{\"files\": [\"app/components/PoshTicket.vue\", \"app/pages/posh.vue\"], \"verifyCommand\": \"npm run build\", \"acceptanceCriteria\": [\"uppercase event title\", \"Breakdown shows ticketTitle/price/Total\", \"QR has (P) badge\", \"no image rendered\", \"form edits update preview live\"], \"modelTier\": \"standard\"}\n```",
       "activeForm": "Building the Posh screen"
@@ -43,7 +43,7 @@
     {
       "id": 5,
       "subject": "Task 6: Plots screen (Image 1)",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [2, 3],
       "description": "**Goal:** The My Tickets list row + ticket detail sheet, matching Image 1, wired to `usePlotsConfig()`.\n\n**Files:**\n- Create: `app/components/PlotsTicket.vue`\n- Create: `app/pages/plots.vue`\n\n**Acceptance Criteria:**\n- [ ] The list row shows the configured image as its thumbnail and the event title as its label; no price is rendered anywhere on this screen.\n- [ ] The ticket detail sheet below it shows the ticket title text and a plain QR code (no logo badge) inside a notched white card.\n- [ ] `/plots` shows the config form above the live preview, and edits update the preview immediately.\n\n**Verify:** `npm run build` → ends with `✨ Build complete!`; then `npm run dev` and visually compare `http://localhost:3000/plots` against Image 1 at an iPhone-width viewport.\n\n**Steps:** Write `app/components/PlotsTicket.vue` (My Tickets header, list row with date badge/thumbnail/title, notched white ticket card with title + plain QR) reading from `usePlotsConfig()`; write `app/pages/plots.vue` combining `TicketConfigForm` (v-model on the Plots config) with `PlotsTicket`; verify build; manual visual check against Image 1; commit.\n\n```json:metadata\n{\"files\": [\"app/components/PlotsTicket.vue\", \"app/pages/plots.vue\"], \"verifyCommand\": \"npm run build\", \"acceptanceCriteria\": [\"list row shows image + event title\", \"no price rendered\", \"detail sheet shows ticketTitle + plain QR\", \"form edits update preview live\"], \"modelTier\": \"standard\"}\n```",
       "activeForm": "Building the Plots screen"
@@ -51,11 +51,11 @@
     {
       "id": 6,
       "subject": "Task 7: Home page and end-to-end verification",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [4, 5],
       "description": "**Goal:** Home page picker linking to `/posh` and `/plots`, plus a full pass confirming the PWA is installable and both screens work end-to-end.\n\n**Files:**\n- Create: `app/pages/index.vue`\n\n**Acceptance Criteria:**\n- [ ] `/` shows a \"PartyPooper\" heading with two large tappable options, \"Posh\" and \"Plots\", navigating to `/posh` and `/plots` respectively.\n- [ ] Editing a field on `/posh`, reloading, and revisiting `/posh` shows the edited value (localStorage persistence).\n- [ ] Editing a field on `/plots` does not change anything shown on `/posh`, and vice versa.\n- [ ] Chrome DevTools → Application tab shows a valid manifest (name \"PartyPooper\", standalone display) and a registered, activated service worker.\n\n**Verify:** `npm run build` → ends with `✨ Build complete!`; then the manual checks in the plan's Task 7 Step 3.\n\n**Steps:** Write `app/pages/index.vue` with the Posh/Plots picker; verify build; run the 6-point manual end-to-end verification listed in the plan (navigation, live preview updates on both screens, localStorage persistence, config independence, DevTools manifest + service worker check); commit.\n\n```json:metadata\n{\"files\": [\"app/pages/index.vue\"], \"verifyCommand\": \"npm run build\", \"acceptanceCriteria\": [\"home page links to /posh and /plots\", \"localStorage persistence confirmed\", \"config independence confirmed\", \"manifest and service worker valid in DevTools\"], \"modelTier\": \"standard\"}\n```",
       "activeForm": "Building the home page and running end-to-end verification"
     }
   ],
-  "lastUpdated": "2026-08-23T00:00:00Z"
+  "lastUpdated": "2026-08-23T23:59:00Z"
 }
