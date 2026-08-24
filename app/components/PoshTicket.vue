@@ -44,19 +44,42 @@ const price = computed(() => `$${Number(config.value.price || 0).toFixed(2)}`)
     </div>
 
     <div class="mx-4 mt-4 divide-y divide-neutral-800 rounded-2xl bg-neutral-900">
-      <div class="flex items-center justify-between px-4 py-4">
-        <span>View event</span>
+      <div class="flex items-center gap-3 px-4 py-4">
+        <svg class="h-5 w-5 shrink-0 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="9" />
+          <path stroke-linecap="round" d="M12 11v5" />
+          <circle cx="12" cy="8" r="0.75" fill="currentColor" stroke="none" />
+        </svg>
+        <span class="flex-1">View event</span>
         <span>&rsaquo;</span>
       </div>
-      <div class="flex items-center justify-between px-4 py-4">
-        <span>View order confirmation</span>
+      <div class="flex items-center gap-3 px-4 py-4">
+        <svg class="h-5 w-5 shrink-0 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="9" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.5 12.5l2.5 2.5 4.5-5" />
+        </svg>
+        <span class="flex-1">View order confirmation</span>
         <span>&rsaquo;</span>
       </div>
     </div>
 
     <div class="mx-4 mb-8 mt-4 divide-y divide-neutral-800 rounded-2xl bg-neutral-900">
-      <div class="px-4 py-4">Add to calendar</div>
-      <div class="px-4 py-4">Add to Apple Wallet</div>
+      <div class="flex items-center gap-3 px-4 py-4">
+        <svg class="h-5 w-5 shrink-0 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3.5" y="5" width="17" height="15" rx="2" />
+          <path stroke-linecap="round" d="M3.5 9.5h17M8 3v3M16 3v3" />
+          <path stroke-linecap="round" d="M12 12.5v4M10 14.5h4" />
+        </svg>
+        <span>Add to calendar</span>
+      </div>
+      <div class="flex items-center gap-3 px-4 py-4">
+        <svg class="h-5 w-5 shrink-0 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="6" width="18" height="13" rx="2" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18" />
+          <path stroke-linecap="round" d="M16 14h2" />
+        </svg>
+        <span>Add to Apple Wallet</span>
+      </div>
     </div>
   </div>
 </template>
