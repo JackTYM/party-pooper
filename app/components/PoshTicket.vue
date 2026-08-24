@@ -2,7 +2,7 @@
 import { usePoshConfig } from '~/composables/useTicketConfig'
 
 const config = usePoshConfig()
-const price = computed(() => `$${config.value.price.toFixed(2)}`)
+const price = computed(() => `$${Number(config.value.price || 0).toFixed(2)}`)
 </script>
 
 <template>
