@@ -8,7 +8,7 @@ const price = computed(() => `$${Number(config.value.price || 0).toFixed(2)}`)
 <template>
   <div class="min-h-screen bg-black text-white">
     <div class="relative flex items-center justify-center px-4 py-4">
-      <button class="absolute left-4 text-2xl" aria-label="Back">&lsaquo;</button>
+      <NuxtLink to="/" class="absolute left-4 text-2xl" aria-label="Back">&lsaquo;</NuxtLink>
       <h1 class="text-lg font-semibold">Order #33883562</h1>
     </div>
 
