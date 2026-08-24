@@ -6,6 +6,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
   css: ['~/assets/css/main.css'],
+  app: {
+    head: {
+      viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+      meta: [
+        { name: 'theme-color', content: '#000000' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+      ],
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },

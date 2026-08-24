@@ -6,7 +6,7 @@ const plotsConfig = usePlotsConfig()
 </script>
 
 <template>
-  <div class="min-h-screen bg-black px-6 py-10 text-white">
+  <div class="min-h-dvh bg-black px-6 py-10 text-white">
     <h1 class="text-center text-3xl font-bold">PartyPooper</h1>
 
     <div class="mx-auto mt-8 flex max-w-md flex-col gap-4">
