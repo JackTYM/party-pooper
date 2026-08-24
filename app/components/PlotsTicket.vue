@@ -7,10 +7,9 @@ const config = usePlotsConfig()
 <template>
   <div class="relative min-h-dvh overflow-hidden bg-black text-white">
     <div
-      class="absolute inset-0 scale-110 bg-cover bg-top blur-2xl brightness-50"
+      class="absolute inset-0 scale-110 bg-cover bg-top blur-2xl"
       style="background-image: url('/plots-backdrop.jpg')"
     />
-    <div class="absolute inset-0 bg-black/30" />
 
     <div class="relative flex min-h-dvh flex-col">
       <div class="px-4 py-4">
